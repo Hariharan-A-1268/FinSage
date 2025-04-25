@@ -1,0 +1,87 @@
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from sklearn.preprocessing import LabelEncoder
+from tensorflow.keras.layers import Input, Embedding, LSTM, Dense, Concatenate, Reshape
+from tensorflow.keras.models import Model
+
+# ---- Config ----
+SEQ_LEN = 30
+EMBED_DIM = 16
+LSTM_UNITS = 64
+BATCH_SIZE = 64
+EPOCHS = 10
+
+# ---- Load and Prepare Data ----
+df = pd.read_csv('mutual_fund_data.csv')  # expects fund_id, date, nav_price
+df = df.dropna(subset=['fund_id', 'date', 'nav_price'])
+
+# Encode fund_id
+le = LabelEncoder()
+df['fund_id_encoded'] = le.fit_transform(df['fund_id'])
+
+# Sort for time series
+df = df.sort_values(by=['fund_id', 'date'])
+
+# Create sequences
+X_nav, X_fund_id, y = [], [], []
+
+for fund_id in df['fund_id_encoded'].unique():
+    fund_data = df[df['fund_id_encoded'] == fund_id]['nav_price'].values
+    for i in range(len(fund_data) - SEQ_LEN):
+        X_nav.append(fund_data[i:i+SEQ_LEN])
+        y.append(fund_data[i+SEQ_LEN])
+        X_fund_id.append(fund_id)
+
+X_nav = np.array(X_nav)
+X_fund_id = np.array(X_fund_id)
+y = np.array(y)
+
+print(f"Prepared dataset - NAV shape: {X_nav.shape}, Fund IDs: {X_fund_id.shape}, Target: {y.shape}")
+
+# ---- Build Model ----
+num_funds = df['fund_id_encoded'].nunique()
+
+nav_input = Input(shape=(SEQ_LEN,), name='nav_input')
+fund_id_input = Input(shape=(), dtype='int32', name='fund_id_input')
+
+fund_embedding = Embedding(input_dim=num_funds, output_dim=EMBED_DIM)(fund_id_input)
+fund_embedding = Reshape((1, EMBED_DIM))(fund_embedding)
+fund_embedding = tf.repeat(fund_embedding, repeats=SEQ_LEN, axis=1)
+
+nav_reshaped = Reshape((SEQ_LEN, 1))(nav_input)
+combined = Concatenate()([nav_reshaped, fund_embedding])
+
+lstm_out = LSTM(LSTM_UNITS)(combined)
+output = Dense(1)(lstm_out)
+
+model = Model(inputs=[nav_input, fund_id_input], outputs=output)
+model.compile(optimizer='adam', loss='mse')
+
+model.summary()
+
+# ---- Train Model ----
+model.fit(
+    x={'nav_input': X_nav, 'fund_id_input': X_fund_id},
+    y=y,
+    batch_size=BATCH_SIZE,
+    epochs=EPOCHS,
+    validation_split=0.1
+)
+
+# ---- Prediction Function ----
+def predict_next_nav(last_nav_seq, fund_id):
+    if isinstance(fund_id, str):
+        fund_id_encoded = le.transform([fund_id])[0]
+    else:
+        fund_id_encoded = fund_id  # already encoded
+
+    last_nav_seq = np.array(last_nav_seq).reshape(1, SEQ_LEN)
+    fund_id_input = np.array([fund_id_encoded])
+    
+    pred = model.predict({'nav_input': last_nav_seq, 'fund_id_input': fund_id_input})
+    return pred[0][0]
+
+# ---- Example usage ----
+# last_30_nav = df[df['fund_id'] == 'fund_123'].sort_values('date')['nav_price'].values[-30:]
+# print("Predicted next NAV:", predict_next_nav(last_30_nav, 'fund_123'))
