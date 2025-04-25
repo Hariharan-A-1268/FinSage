@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+}
+/* html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+} */
+:root {
+  --color-active: #4caf50;
+  &,
+  &.light-mode {
+    --color1: #ffcbf2;
+    --color2: #f3c4fb;
+    --color3: #ecbcfd;
+    --color4: #e5b3fe;
+    --color5: #e2afff;
+    --color6: #deaaff;
+    --color7: #d8bbff;
+    --color8: #d0d1ff;
+    --color9: #c8e7ff;
+    --color10: #c0fdff;
+    /* --color1: #74b9ff;
+    --color2: #55ace6;
+    --color3: #56c4ff;
+    --color4: #4ecdff;
+    --color5: #42c9ff;
+    --color6: #47ddff;
+    --color7: #49dbff;
+    --color8: #3dcbff;
+    --color9: #3cc1ff;
+    --color10: #3ba3ff; */
+    /* --color1: #ff0a54;
+    --color2: #ff477e;
+    --color3: #ff5c8a;
+    --color4: #ff7096;
+    --color5: #ff85a1;
+    --color6: #ff99ac;
+    --color7: #fbb1bd;
+    --color8: #f9bec7;
+    --color9: #f7cad0;
+    --color10: #fae0e4; */
+    --color-text: #000000;
+    --color-background: #ffffff;
+  }
+
+  &.dark-mode {
+    /* --color1: #ff207f;
+    --color2: #ff3399;
+    --color3: #ff4db3;
+    --color4: #ff66cc;
+    --color5: #ff80e6;
+    --color6: #ff99ff;
+    --color7: #ffb3ff;
+    --color8: #ffccff;
+    --color9: #ffe6ff;
+    --color10: #ffffff; */
+    --color1: #4c79a6;
+    --color2: #366f95;
+    --color3: #4bcd3e;
+    --color4: rgba(10, 25, 50);
+    --color5: #194f64;
+    --color6: #2a6f8c;
+    --color7: #4bcd3e;  /*dashboard boxes*/
+    --color8: rgba(10, 25, 50);
+    --color9: #0c2a38;
+    --color10: #4bcd3e;
+    --color-text: #ffffff;
+    --color-background: #000000;
+  }
+}
