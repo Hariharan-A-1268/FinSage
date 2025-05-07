@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import MFPriceChart from "./MutualFundChart";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://finsage.onrender.com";
 
 const AboutFund = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,14 +69,13 @@ const AboutFund = () => {
   };
   const [showOptions, setShowOptions] = useState(false);
   const handleFundClick = (fund) => {
-    axios
-      .fetch("/api/mf/about", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fund),
-      })
+    fetch("https://finsage.onrender.com/api/mf/about", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fund),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

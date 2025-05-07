@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://finsage.onrender.com";
 
 const MFPriceChart = ({ isin }) => {
   const ref = useRef();
   const [range, setRange] = useState("5Y");
 
   useEffect(() => {
-    axios
-      .fetch(`/api/mf/graph?range=${range}&isin=${isin}`)
+    fetch(
+      `https://finsage.onrender.com/api/mf/graph?range=${range}&isin=${isin}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.historical?.length || data?.predictions?.length) {

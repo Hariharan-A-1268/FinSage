@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://finsage.onrender.com";
 
 const RDPage = () => {
   const [rdResults, setRdResults] = useState([]);
@@ -50,11 +47,14 @@ const RDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = await axios.fetch("/api/rd-analysis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://finsage.onrender.com/api/rd-analysis",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
