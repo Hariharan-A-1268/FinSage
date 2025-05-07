@@ -9,7 +9,8 @@ const MFPriceChart = ({ isin }) => {
   const [range, setRange] = useState("5Y");
 
   useEffect(() => {
-    await axios.fetch(`/api/mf/graph?range=${range}&isin=${isin}`)
+    axios
+      .fetch(`/api/mf/graph?range=${range}&isin=${isin}`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.historical?.length || data?.predictions?.length) {
