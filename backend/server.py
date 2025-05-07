@@ -22,7 +22,7 @@ import get_mf_nav
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:3000"}})
 bcrypt = Bcrypt(app)
 app.config["JWT_SECRET_KEY"] = "Innovate48"
 jwt = JWTManager(app)
