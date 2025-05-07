@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://finsage.onrender.com";
 
 const GoldPriceChart = ({ karat, term, investmentAmount }) => {
   const ref = useRef();
@@ -11,10 +8,9 @@ const GoldPriceChart = ({ karat, term, investmentAmount }) => {
   useEffect(() => {
     if (!range || !karat || !investmentAmount) return;
 
-    axios
-      .fetch(
-        `/api/gold?range=${range}&karat=${karat}&investmentAmount=${investmentAmount}`
-      )
+    fetch(
+      `https://finsage.onrender.com/api/gold?range=${range}&karat=${karat}&investmentAmount=${investmentAmount}`
+    )
       .then((res) => res.json())
       .then((data) => {
         drawChart(data);
