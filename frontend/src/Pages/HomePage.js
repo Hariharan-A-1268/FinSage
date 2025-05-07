@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { useAuth } from "../Components/Authentication/AuthContext";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const HomePage = () => {
   const COLORS = ["#4BCD3E", "#FFB400", "#36A2EB", "#f54242"];
 

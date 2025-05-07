@@ -11,6 +11,8 @@ import {
 } from "recharts";
 import GoldPriceChart from "./GoldChart";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const GoldPage = () => {
   const data = [
     { karat: "24K", purity: 99.9 },

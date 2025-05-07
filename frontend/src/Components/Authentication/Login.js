@@ -4,6 +4,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const Login = ({ setIsLogin }) => {
   const { login } = useAuth();
   const [show, setShow] = useState(false);

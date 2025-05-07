@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const Recommend = () => {
   const [formData, setFormData] = useState({
     investmentAmount: "",

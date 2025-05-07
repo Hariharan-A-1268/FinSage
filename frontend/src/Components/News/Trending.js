@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const options = [
   "Financial News",
   "Gold",
