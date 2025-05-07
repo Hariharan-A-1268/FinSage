@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import MFPriceChart from "./MutualFundChart";
+import axios from "axios";
 
 axios.defaults.baseURL = "https://finsage.onrender.com";
 
