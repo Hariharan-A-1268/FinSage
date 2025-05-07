@@ -11,7 +11,7 @@ const GoldPriceChart = ({ karat, term, investmentAmount }) => {
   useEffect(() => {
     if (!range || !karat || !investmentAmount) return;
 
-    fetch(
+    await axios.fetch(
       `/api/gold?range=${range}&karat=${karat}&investmentAmount=${investmentAmount}`
     )
       .then((res) => res.json())

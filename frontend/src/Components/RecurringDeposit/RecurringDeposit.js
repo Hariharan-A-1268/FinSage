@@ -50,7 +50,7 @@ const RDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = await fetch("/api/rd-analysis", {
+      const response = await axios.fetch("/api/rd-analysis", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

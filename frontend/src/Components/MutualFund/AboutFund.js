@@ -72,13 +72,14 @@ const AboutFund = () => {
   };
   const [showOptions, setShowOptions] = useState(false);
   const handleFundClick = (fund) => {
-    fetch("/api/mf/about", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(fund),
-    })
+    await axios
+      .fetch("/api/mf/about", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fund),
+      })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
