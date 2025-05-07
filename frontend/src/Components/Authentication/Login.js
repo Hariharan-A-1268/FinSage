@@ -24,7 +24,7 @@ const Login = ({ setIsLogin }) => {
 
     try {
       const { data } = await axios.post(
-        "https://finsage.onrender.com/api/user/login",
+        "/api/user/login",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
