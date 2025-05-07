@@ -72,7 +72,7 @@ const AboutFund = () => {
   };
   const [showOptions, setShowOptions] = useState(false);
   const handleFundClick = (fund) => {
-    await axios
+    axios
       .fetch("/api/mf/about", {
         method: "POST",
         headers: {
