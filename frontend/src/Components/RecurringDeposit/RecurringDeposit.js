@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const RDPage = () => {
   const [rdResults, setRdResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

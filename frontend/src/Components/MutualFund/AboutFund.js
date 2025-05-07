@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Search } from "lucide-react";
 import MFPriceChart from "./MutualFundChart";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const AboutFund = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFund, setSelectedFund] = useState(null);

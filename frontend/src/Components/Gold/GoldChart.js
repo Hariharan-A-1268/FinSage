@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
+axios.defaults.baseURL = "https://finsage.onrender.com";
+
 const GoldPriceChart = ({ karat, term, investmentAmount }) => {
   const ref = useRef();
   const [range, setRange] = useState(term);
