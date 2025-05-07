@@ -33,14 +33,11 @@ const HomePage = () => {
           return;
         }
 
-        const response = await axios.get(
-          "http://localhost:5000/api/user/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/user/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setUserName(response.data.name);
       } catch (error) {
@@ -65,16 +62,13 @@ const HomePage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/investment-recommendation",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("/api/investment-recommendation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
       const { Income, ...filteredData } = data;
       setIncome(Income);

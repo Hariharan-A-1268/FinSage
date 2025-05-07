@@ -19,10 +19,7 @@ const Recommend = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/mf/recommendation",
-        formData
-      );
+      const response = await axios.post("/api/mf/recommendation", formData);
       console.log(response.data);
 
       setRecommendations(response.data); // Store backend response

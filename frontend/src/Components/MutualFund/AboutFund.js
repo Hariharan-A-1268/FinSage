@@ -69,7 +69,7 @@ const AboutFund = () => {
   };
   const [showOptions, setShowOptions] = useState(false);
   const handleFundClick = (fund) => {
-    fetch("http://localhost:5000/api/mf/about", {
+    fetch("/api/mf/about", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const AccountPage = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:5000/api/user/profile", {
+    fetch("/api/user/profile", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +26,7 @@ const AccountPage = () => {
 
   const handleUpdateName = () => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:5000/api/user/profile/update-name", {
+    fetch("/api/user/profile/update-name", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,49 +45,55 @@ const AccountPage = () => {
   };
 
   const handleResetPassword = () => {
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  fetch("http://localhost:5000/api/user/reset-password", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ newPassword }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        window.alert("✅ Password updated successfully!");
-        setNewPassword(""); // Clear input
-      } else {
-        return res.json().then((data) => {
-          throw new Error(data.message || "Failed to update password");
-        });
-      }
+    fetch("/api/user/reset-password", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ newPassword }),
     })
-    .catch((err) => {
-      console.error("Error resetting password:", err);
-      window.alert(`❌ ${err.message}`);
-    });
-};
+      .then((res) => {
+        if (res.ok) {
+          window.alert("✅ Password updated successfully!");
+          setNewPassword(""); // Clear input
+        } else {
+          return res.json().then((data) => {
+            throw new Error(data.message || "Failed to update password");
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Error resetting password:", err);
+        window.alert(`❌ ${err.message}`);
+      });
+  };
 
   return (
-    <div style={{
-      backgroundColor: "#0A1932",
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    }}>
-      <div style={{
-        width: "500px",
-        padding: "40px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
+    <div
+      style={{
         backgroundColor: "#0A1932",
-        color: "white"
-      }}>
-        <h2 style={{ fontWeight: "bold", textAlign: "center" }}>Account Settings</h2>
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "500px",
+          padding: "40px",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+          backgroundColor: "#0A1932",
+          color: "white",
+        }}
+      >
+        <h2 style={{ fontWeight: "bold", textAlign: "center" }}>
+          Account Settings
+        </h2>
 
         {/* Name Input + Save Button */}
         <div style={{ marginBottom: "15px", width: "99%" }}>
@@ -109,7 +115,7 @@ const AccountPage = () => {
                 border: "none",
                 cursor: "pointer",
                 borderRadius: "5px",
-                fontWeight: "bold"
+                fontWeight: "bold",
               }}
             >
               Save
@@ -118,12 +124,14 @@ const AccountPage = () => {
         </div>
 
         {/* Email (Read-only) */}
-        <div style={{
-          marginBottom: "15px",
-          display: "flex",
-          flexDirection: "column",
-          width: "95%"
-        }}>
+        <div
+          style={{
+            marginBottom: "15px",
+            display: "flex",
+            flexDirection: "column",
+            width: "95%",
+          }}
+        >
           <label style={{ marginBottom: "5px" }}>Email:</label>
           <input
             type="email"
@@ -135,18 +143,20 @@ const AccountPage = () => {
               padding: "8px",
               backgroundColor: "#e9ecef",
               color: "#6c757d",
-              border: "1px solid #ced4da"
+              border: "1px solid #ced4da",
             }}
           />
         </div>
 
         {/* Password Reset Field */}
-        <div style={{
-          marginBottom: "15px",
-          display: "flex",
-          flexDirection: "column",
-          width: "95%"
-        }}>
+        <div
+          style={{
+            marginBottom: "15px",
+            display: "flex",
+            flexDirection: "column",
+            width: "95%",
+          }}
+        >
           <label style={{ marginBottom: "5px" }}>New Password:</label>
           <input
             type="password"
@@ -158,17 +168,19 @@ const AccountPage = () => {
               padding: "8px",
               backgroundColor: "#ffffff",
               color: "#000000",
-              border: "1px solid #ced4da"
+              border: "1px solid #ced4da",
             }}
           />
         </div>
 
         {/* Action Buttons */}
-        <div style={{
-          marginTop: "20px",
-          display: "flex",
-          justifyContent: "space-between"
-        }}>
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <button
             onClick={handleResetPassword}
             style={{
@@ -179,7 +191,7 @@ const AccountPage = () => {
               cursor: "pointer",
               width: "48%",
               borderRadius: "5px",
-              fontWeight: "bold"
+              fontWeight: "bold",
             }}
           >
             Reset Password
@@ -193,7 +205,7 @@ const AccountPage = () => {
               cursor: "pointer",
               width: "48%",
               borderRadius: "5px",
-              fontWeight: "bold"
+              fontWeight: "bold",
             }}
           >
             Delete Account
