@@ -4,6 +4,9 @@ Welcome to **FinSage**, your intelligent financial assistant – a one-stop solu
 
 ---
 
+**⚠️ Due to free tier of vercel, Sign in process of website will take around 20 to 30 seconds.**
+
+
 ## 🌟 Tagline
 **Your Financial Compass, Powered by AI.**
 
