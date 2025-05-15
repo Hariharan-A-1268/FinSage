@@ -4,8 +4,8 @@ import requests
 app = Flask(__name__)
 
 # Replace with your actual values
-AZURE_OPENAI_ENDPOINT = "https://innovate-openai-api-mgt.azure-api.net/innovate-tracked/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-01&Subscription-Key=2a54afed75ad481d831f3b85d6fb8ccb"
-SUBSCRIPTION_KEY = "2a54afed75ad481d831f3b85d6fb8ccb"
+AZURE_OPENAI_ENDPOINT = "AZURE_OPENAI_ENDPOINT"
+SUBSCRIPTION_KEY = "SUBSCRIPTION_KEY"
 
 @app.route("/chat", methods=["POST"])
 def chat():
