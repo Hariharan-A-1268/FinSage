@@ -52,10 +52,6 @@ const FDPage = () => {
     try {
       const response = await axios.post("/api/fd-analysis", payload, { headers: { "Content-Type": "application/json" }});
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
       const data = await response.json();
       console.log("Received Data:", data);
 
