@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://finsage.onrender.com";
 
 const FDPage = () => {
   const [fdResults, setFdResults] = useState([]);
@@ -47,8 +50,8 @@ const FDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = await fetch(
-        "https://finsage.onrender.com/api/fd-analysis",
+      const response = await axios.fetch(
+        "/api/fd-analysis",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
