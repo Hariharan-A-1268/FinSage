@@ -50,14 +50,7 @@ const FDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = axios.post(
-        "/api/fd-analysis",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await axios.post("/api/fd-analysis", payload, { headers: { "Content-Type": "application/json" }});
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
