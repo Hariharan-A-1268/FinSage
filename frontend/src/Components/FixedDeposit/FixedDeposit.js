@@ -50,7 +50,7 @@ const FDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = await fetch(
+      const response = axios.post(
         "/api/fd-analysis",
         {
           method: "POST",
