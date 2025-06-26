@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://finsage.onrender.com";
+const BASE_URL = "https://finsage.onrender.com";
 
 const FDPage = () => {
   const [fdResults, setFdResults] = useState([]);
@@ -50,7 +50,15 @@ const FDPage = () => {
     console.log("Sending payload:", payload);
 
     try {
-      const response = await axios.post("/api/fd-analysis", payload, { headers: { "Content-Type": "application/json" }});
+      const response = await fetch(`${BASE_URL}/api/fd-analysis`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
       const data = await response.json();
       console.log("Received Data:", data);
