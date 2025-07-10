@@ -16,7 +16,7 @@ import about_mutualfund
 import get_news_links
 import get_mf_nav
 
-#pip install flask flask-bcrypt flask-jwt-extended flask-cors python-dotenv sqlitecloud sqlalchemy-sqlitecloud scipy
+#pip install flask flask-bcrypt flask-jwt-extended flask-cors python-dotenv sqlitecloud sqlalchemy-sqlitecloud scipy sqlalchemy pandas requests
 
 # Load environment variables
 load_dotenv()

@@ -16,7 +16,7 @@ def get_gold_data(karat_option, range_option, investment_amount, db_path):
     }
     days = ranges.get(range_option, 30)
 
-    today = datetime.today()
+    today = datetime(2025, 4, 7)
     start_date = (today - timedelta(days=days)).strftime('%Y-%m-%d')
     end_date = (today + timedelta(days=days)).strftime('%Y-%m-%d')
 

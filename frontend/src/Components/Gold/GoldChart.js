@@ -31,7 +31,7 @@ const GoldPriceChart = ({ karat, term, investmentAmount }) => {
     const height = 400;
     const margin = { top: 20, right: 30, bottom: 70, left: 80 }; // Increased bottom and left margins for axis labels
 
-    const today = new Date();
+    const today = new Date("2025-04-07");
     const parseDate = d3.timeParse("%Y-%m-%d");
 
     const allData = [...data.historical, ...data.predicted].map((d) => ({

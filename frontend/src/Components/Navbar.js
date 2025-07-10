@@ -27,9 +27,9 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       <div style={styles.navContainer}>
         <div style={styles.navLinks}>
-          <Link to="/chatbot" style={styles.navItem}>
+          {/* <Link to="/chatbot" style={styles.navItem}>
             <Bot size={25} /> ChatBot
-          </Link>
+          </Link> */}
           <div
             style={styles.navItem}
             onMouseEnter={() => setIsInvestmentOpen(true)}
@@ -68,9 +68,8 @@ const Navbar = () => {
             onMouseLeave={() => setIsNewsOpen(false)}
           >
             <Link to="/news" style={styles.navItem}>
-              <Newspaper size={18} /> News          
+              <Newspaper size={18} /> News
             </Link>
-
           </div>
           <Link to="/home" style={styles.navItem}>
             <Home size={18} /> Home
