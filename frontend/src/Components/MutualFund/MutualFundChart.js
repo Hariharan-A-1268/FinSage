@@ -26,19 +26,28 @@ const MFPriceChart = ({ isin }) => {
     const height = 400;
     const margin = { top: 20, right: 30, bottom: 70, left: 80 };
 
-    const today = new Date("2025-04-07");
     const parseDate = d3.timeParse("%Y-%m-%d");
+    const historical = data.historical;
+    const predicted = data.predictions;
 
-    const allData = [...data.historical, ...data.predictions].map((d) => ({
-      date: parseDate(d.date),
-      price: d.price,
-    }));
+    const parsedHistorical = historical
+      .filter((d) => d.Date && d.Price != null)
+      .map((d) => ({
+        date: new Date(d.Date),
+        price: +d.Price,
+      }));
 
-    const parsedHistorical = allData.filter((d) => d.date < today);
-    const parsedPredictions = allData.filter((d) => d.date >= today);
+    const parsedPredicted = predicted
+      .filter((d) => d.Date && d.Price != null)
+      .map((d) => ({
+        date: new Date(d.Date),
+        price: +d.Price,
+      }));
 
-    console.log("parsedHistorical: ", parsedHistorical);
-    console.log("parsedPredictions: ", parsedPredictions);
+    console.log(parsedHistorical);
+    console.log(parsedPredicted);
+
+    const allData = [...parsedHistorical, ...parsedPredicted];
 
     if (allData.length === 0) {
       console.warn("No valid data available to draw.");
@@ -105,7 +114,7 @@ const MFPriceChart = ({ isin }) => {
 
     svg
       .append("path")
-      .datum(parsedPredictions)
+      .datum(parsedPredicted)
       .attr("fill", "none")
       .attr("stroke", "blue")
       .attr("stroke-width", 2)
@@ -113,6 +122,7 @@ const MFPriceChart = ({ isin }) => {
       .attr("d", line);
 
     // Today line: Only draw if today within xScale domain
+    const today = new Date("2025-04-07");
     const xDomain = xScale.domain();
     if (today >= xDomain[0] && today <= xDomain[1]) {
       svg
