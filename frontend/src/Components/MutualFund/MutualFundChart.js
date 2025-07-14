@@ -37,6 +37,9 @@ const MFPriceChart = ({ isin }) => {
     const parsedHistorical = allData.filter((d) => d.date < today);
     const parsedPredictions = allData.filter((d) => d.date >= today);
 
+    console.log("parsedHistorical: ", parsedHistorical);
+    console.log("parsedPredictions: ", parsedPredictions);
+
     if (allData.length === 0) {
       console.warn("No valid data available to draw.");
       return;
