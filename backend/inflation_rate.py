@@ -7,8 +7,8 @@ def get_inflation_rate(year):
     cursor = conn.cursor()
 
     # Get current month and year
-    current_month = pd.Timestamp.today().month
-    current_year = pd.Timestamp.today().year
+    current_month = 4 # pd.Timestamp.today().month
+    current_year = 2025 # pd.Timestamp.today().year
 
     # Map month number to month name
     month_name = pd.to_datetime(str(current_month), format='%m').strftime('%B')
