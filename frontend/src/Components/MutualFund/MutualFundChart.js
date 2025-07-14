@@ -29,13 +29,13 @@ const MFPriceChart = ({ isin }) => {
     const today = new Date("2025-04-07");
     const parseDate = d3.timeParse("%Y-%m-%d");
 
-    const allData = [...data.historical, ...data.predicted].map((d) => ({
+    const allData = [...data.historical, ...data.predictions].map((d) => ({
       date: parseDate(d.date),
       price: d.price,
     }));
 
-    const historical = allData.filter((d) => d.date < today);
-    const predicted = allData.filter((d) => d.date >= today);
+    const parsedHistorical = allData.filter((d) => d.date < today);
+    const parsedPredictions = allData.filter((d) => d.date >= today);
 
     if (allData.length === 0) {
       console.warn("No valid data available to draw.");
@@ -94,7 +94,7 @@ const MFPriceChart = ({ isin }) => {
 
     svg
       .append("path")
-      .datum(historical)
+      .datum(parsedHistorical)
       .attr("fill", "none")
       .attr("stroke", "green")
       .attr("stroke-width", 2)
@@ -102,7 +102,7 @@ const MFPriceChart = ({ isin }) => {
 
     svg
       .append("path")
-      .datum(predicted)
+      .datum(parsedPredictions)
       .attr("fill", "none")
       .attr("stroke", "blue")
       .attr("stroke-width", 2)
