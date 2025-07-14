@@ -36,7 +36,7 @@ def fetch_mf_nav(isin, range_option):
     }
     days = ranges.get(range_option, 30)  # Default to 1M if invalid
 
-    today = datetime.today()
+    today = datetime(2025, 4, 7)
     start_date = today - timedelta(days=days)
     end_date = today + timedelta(days=days)
 
