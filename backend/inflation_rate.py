@@ -49,6 +49,4 @@ def get_inflation_rate(year):
     # Inflation Rate Calculation
     inflation_rate = round(((current_cpi - previous_cpi) / previous_cpi) * 100, 2)
 
-    print(inflation_rate)
-
     return inflation_rate
