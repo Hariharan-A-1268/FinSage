@@ -45,7 +45,8 @@ def get_top_banks(db_path, amount, return_years):
             "Bank": bank,
             "Interest Rate (%)": interest_rate,
             "Maturity Amount (₹)": maturity_amount,
-            "Real Maturity Amount (₹)": fd_real_amt
+            "Real Maturity Amount (₹)": fd_real_amt,
+            "Inflation Rate": inflation_rate
         })
 
     # Sort data by Nominal Maturity Amount in descending order
